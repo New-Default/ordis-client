@@ -52,7 +52,7 @@ const Board: React.FC = () => {
           newString += e.key;
         }
     }
-    console.log(e);
+
     const copy = [...rowTexts];
     copy[currentRow] = newString;
     setRowTexts(copy);
