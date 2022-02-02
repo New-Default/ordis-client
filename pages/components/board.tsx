@@ -11,7 +11,6 @@ const Board: React.FC = () => {
     null,
     null,
     null,
-    null,
   ]);
   const [dictionary, setDictionary] = useState<string[]>([]);
   useEffect(() => {
