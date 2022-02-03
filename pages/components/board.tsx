@@ -14,7 +14,7 @@ const Board: React.FC = () => {
   ]);
   const [dictionary, setDictionary] = useState<string[]>([]);
   useEffect(() => {
-    fetch("http://localhost:8080/dictionary")
+    fetch("/api/w?dictionary")
       .then((response) => response.json())
       .then((json) => setDictionary(json));
   }, []);
@@ -32,7 +32,7 @@ const Board: React.FC = () => {
         if (newString.length === 5) {
           if (dictionary.includes(newString)) {
             console.log("Its a word, Mario");
-            fetch(`http://localhost:8080/${newString}`)
+            fetch(`/api/w?${newString}`)
               .then((response) => response.json())
               .then((json) => {
                 console.log(json);
