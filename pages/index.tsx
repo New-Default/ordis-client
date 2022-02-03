@@ -7,15 +7,15 @@ const Home: NextPage = () => {
   
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Ordis</title>
         <meta name="description" content="Ordis är ett ordspel" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Ordis</h1>
+        <h1>Ordis</h1>
         <Board />
       </main>
 
