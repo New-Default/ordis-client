@@ -3,10 +3,11 @@ import React from "react";
 interface Props {
   character?: string;
   score?: number;
+  index: number;
 }
 
-const Letter: React.FC<Props> = ({character = '', score = 0}) => {
-  const backgroundColors = ['#000', '#cc0', 'green'];
+const Letter: React.FC<Props> = ({ character = "", score = 0, index }) => {
+  const backgroundColors = ["#000", "#cc0", "green"];
 
   return (
     <div
@@ -18,6 +19,8 @@ const Letter: React.FC<Props> = ({character = '', score = 0}) => {
         fontSize: 38,
         color: "#fff",
         textAlign: "center",
+        transition: "1s",
+        transitionDelay: `${index * 3}00ms`,
       }}
     >
       {character.toUpperCase()}
