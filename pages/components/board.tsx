@@ -4,6 +4,7 @@ import Row from "./row";
 const Board: React.FC = () => {
   const [currentRow, setCurrentRow] = useState(0);
   const [rowTexts, setRowTexts] = useState(["", "", "", "", "", ""]);
+  const [doesWordExist, setDoesWordExist] = useState(true);
   const [rowScores, setRowScores] = useState<(number[] | null)[]>([
     null,
     null,
@@ -27,6 +28,7 @@ const Board: React.FC = () => {
       case "Delete":
       case "ArrowLeft":
         newString = rowTexts[currentRow].slice(0, -1);
+        setDoesWordExist(true); // Well not really... but
         break;
       case "Enter":
         if (newString.length === 5) {
@@ -45,6 +47,7 @@ const Board: React.FC = () => {
               });
           } else {
             // shake effect
+            setDoesWordExist(false);
           }
         }
       default:
@@ -61,7 +64,7 @@ const Board: React.FC = () => {
   return (
     <div style={{ textAlign: "center" }}>
       {rowTexts.map((word, i) => (
-        <Row key={i} word={word} score={rowScores[i]} />
+        <Row key={i} word={word} score={rowScores[i]} shake={currentRow === i && !doesWordExist} />
       ))}
       <input
         style={{
