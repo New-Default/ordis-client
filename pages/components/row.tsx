@@ -8,7 +8,7 @@ interface Props {
 
 const Row: React.FC<Props> = ({ word, score }) => {
   return (
-    <div style={{ height: 100, display: "flex", margin: 10 }}>
+    <div style={{ display: "flex", margin: 5 }}>
       <Letter character={word[0]} score={score?.[0]} />
       <Letter character={word[1]} score={score?.[1]} />
       <Letter character={word[2]} score={score?.[2]} />

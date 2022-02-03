@@ -59,11 +59,14 @@ const Board: React.FC = () => {
   };
 
   return (
-    <div>
+    <div style={{textAlign: 'center'}}>
       {rowTexts.map((word, i) => (
         <Row key={i} word={word} score={rowScores[i]} />
       ))}
       <input
+      style={{
+        fontSize: 16
+      }}
           maxLength={5}
           autoFocus
           // @ts-ignore

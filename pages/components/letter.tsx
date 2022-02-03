@@ -11,12 +11,11 @@ const Letter: React.FC<Props> = ({character = '', score = 0}) => {
   return (
     <div
       style={{
-        width: 100,
-        height: 100,
-        marginRight: 10,
-        border: '10px white',
+        width: 50,
+        height: 50,
+        marginRight: 5,
         backgroundColor: backgroundColors[score],
-        fontSize: 75,
+        fontSize: 38,
         color: "#fff",
         textAlign: "center",
       }}
