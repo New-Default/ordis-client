@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-
-const remoteServer = "http://localhost:8080";
+import getWordResponse from "./getWordResponse";
 
 enum LetterResult {
   Incorrect,
@@ -23,12 +22,9 @@ export default async function handler(
 ) {
   console.log(req.url);
   const paths = req.url?.split("?");
-  const guessWord = paths?.[paths?.length - 1] ?? '';
+  const guessWord = paths?.[paths?.length - 1] ?? "";
   try {
-    const response = await fetch(`${remoteServer}/${guessWord}`).then((resp) =>
-      resp.json()
-    );
-    res.status(200).send(response);
+    res.status(200).send(getWordResponse(guessWord));
   } catch (err) {
     res.status(500).send({
       guessWord,

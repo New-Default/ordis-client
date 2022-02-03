@@ -14,7 +14,7 @@ const Board: React.FC = () => {
   ]);
   const [dictionary, setDictionary] = useState<string[]>([]);
   useEffect(() => {
-    fetch("/api/w?dictionary")
+    fetch("/api/dictionary")
       .then((response) => response.json())
       .then((json) => setDictionary(json));
   }, []);
@@ -59,21 +59,21 @@ const Board: React.FC = () => {
   };
 
   return (
-    <div style={{textAlign: 'center'}}>
+    <div style={{ textAlign: "center" }}>
       {rowTexts.map((word, i) => (
         <Row key={i} word={word} score={rowScores[i]} />
       ))}
       <input
-      style={{
-        fontSize: 16
-      }}
-          maxLength={5}
-          autoFocus
-          // @ts-ignore
-          onKeyDown={updateCurrentRow}
-          onChange={() => {}}
-          value={""}
-        />
+        style={{
+          fontSize: 16,
+        }}
+        maxLength={5}
+        autoFocus
+        // @ts-ignore
+        onKeyDown={updateCurrentRow}
+        onChange={() => {}}
+        value={""}
+      />
     </div>
   );
 };
