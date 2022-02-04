@@ -22,7 +22,7 @@ export default async function handler(
 ) {
   console.log(req.url);
   const paths = req.url?.split("?");
-  const guessWord = paths?.[paths?.length - 1] ?? "";
+  const guessWord = decodeURI(paths?.[paths?.length - 1] ?? "");
   try {
     res.status(200).send(getWordResponse(guessWord));
   } catch (err) {
