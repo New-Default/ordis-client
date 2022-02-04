@@ -6,8 +6,8 @@ interface Props {
   index: number;
 }
 
-const Letter: React.FC<Props> = ({ character = "", score = 0, index }) => {
-  const backgroundColors = ["#000", "#cc0", "green"];
+const Letter: React.FC<Props> = ({ character = "", score, index }) => {
+  const backgroundColors = ["#333", "#cc0", "green"];
 
   return (
     <div
@@ -15,7 +15,7 @@ const Letter: React.FC<Props> = ({ character = "", score = 0, index }) => {
         width: 50,
         height: 50,
         marginRight: 5,
-        backgroundColor: backgroundColors[score],
+        backgroundColor: typeof score === 'number' ? backgroundColors[score] : '#000',
         fontSize: 38,
         color: "#fff",
         textAlign: "center",
