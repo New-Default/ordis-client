@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Keyboard from "./keyboard";
 import Row from "./row";
 
 const Board: React.FC = () => {
@@ -20,10 +21,10 @@ const Board: React.FC = () => {
       .then((json) => setDictionary(json));
   }, []);
 
-  const updateCurrentRow = (e: KeyboardEvent) => {
+  const updateCurrentRow = (key: string) => {
     const allowedCharacters = /^[abcdefghijklmnopqrstuvwxyzåäö]$/;
     let newString = rowTexts[currentRow];
-    switch (e.code) {
+    switch (key) {
       case "Backspace":
       case "Delete":
       case "ArrowLeft":
@@ -51,8 +52,8 @@ const Board: React.FC = () => {
           }
         }
       default:
-        if (allowedCharacters.test(e.key) && newString.length < 5) {
-          newString += e.key;
+        if (allowedCharacters.test(key) && newString.length < 5) {
+          newString += key;
         }
     }
 
@@ -61,23 +62,32 @@ const Board: React.FC = () => {
     setRowTexts(copy);
   };
 
+  const getUsedKeys = () => {
+    const keyScores: {[key: string]: number} = {};
+    rowTexts
+      .filter((text, i) => i < currentRow)
+      .map(word => [
+        word[0],
+        word[1],
+        word[2],
+        word[3],
+        word[4],
+      ]).forEach((letters, i) => letters.forEach((letter, j) => {
+        const score = rowScores[i]?.[j] ?? 0;
+        if (keyScores[letter] === undefined || keyScores[letter] < score) {
+          keyScores[letter] = score
+        }
+      }))
+      return keyScores
+  }
+
   return (
-    <div style={{ textAlign: "center" }}>
+    <>
       {rowTexts.map((word, i) => (
         <Row key={i} word={word} score={rowScores[i]} shake={currentRow === i && !doesWordExist} />
       ))}
-      <input
-        style={{
-          fontSize: 16,
-        }}
-        maxLength={5}
-        autoFocus
-        // @ts-ignore
-        onKeyDown={updateCurrentRow}
-        onChange={() => {}}
-        value={""}
-      />
-    </div>
+      <Keyboard onKeyPress={updateCurrentRow} usedKeys={getUsedKeys()} />
+    </>
   );
 };
 
