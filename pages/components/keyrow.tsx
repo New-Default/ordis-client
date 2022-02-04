@@ -39,6 +39,7 @@ const Keyrow: React.FC<Props> = (props) => {
               textAlign: "center",
               userSelect: "none",
               cursor: 'pointer',
+              textTransform: keyName.length === 1 ? 'uppercase' : 'none',
             }}
           >
             {keyName}
