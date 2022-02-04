@@ -38,6 +38,7 @@ const Keyrow: React.FC<Props> = (props) => {
               background: typeof props.usedKeys[keyName] === 'number' ? backgroundColors[props.usedKeys[keyName]] : '#000',
               textAlign: "center",
               userSelect: "none",
+              cursor: 'pointer',
             }}
           >
             {keyName}
