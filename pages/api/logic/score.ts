@@ -1,10 +1,11 @@
+import getDailyWord from "./getDailyWord";
 export enum LetterResult {
   Incorrect,
   DifferentPosition,
   Correct,
 }
 
-const correctWord = "twerk";
+const correctWord = getDailyWord();
 
 export default function score(guessWord: string) {
   const results = [
