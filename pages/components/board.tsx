@@ -63,29 +63,33 @@ const Board: React.FC = () => {
   };
 
   const getUsedKeys = () => {
-    const keyScores: {[key: string]: number} = {};
+    const keyScores: { [key: string]: number } = {};
     rowTexts
       .filter((text, i) => i < currentRow)
-      .map(word => [
-        word[0],
-        word[1],
-        word[2],
-        word[3],
-        word[4],
-      ]).forEach((letters, i) => letters.forEach((letter, j) => {
-        const score = rowScores[i]?.[j] ?? 0;
-        if (keyScores[letter] === undefined || keyScores[letter] < score) {
-          keyScores[letter] = score
-        }
-      }))
-      return keyScores
-  }
+      .map((word) => [word[0], word[1], word[2], word[3], word[4]])
+      .forEach((letters, i) =>
+        letters.forEach((letter, j) => {
+          const score = rowScores[i]?.[j] ?? 0;
+          if (keyScores[letter] === undefined || keyScores[letter] < score) {
+            keyScores[letter] = score;
+          }
+        })
+      );
+    return keyScores;
+  };
 
   return (
     <>
       {rowTexts.map((word, i) => (
-        <Row key={i} word={word} score={rowScores[i]} shake={currentRow === i && !doesWordExist} />
+        <Row
+          key={i}
+          word={word}
+          score={rowScores[i]}
+          shake={currentRow === i && !doesWordExist}
+        />
       ))}
+      <br />
+      <br />
       <Keyboard onKeyPress={updateCurrentRow} usedKeys={getUsedKeys()} />
     </>
   );

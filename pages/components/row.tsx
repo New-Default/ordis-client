@@ -10,7 +10,7 @@ interface Props {
 const Row: React.FC<Props> = ({ word, score, shake }) => {
   return (
     <div
-      style={{ display: "flex", margin: 5 }}
+      style={{ display: "flex", margin: 3 }}
       className={shake ? styles.shakeEffect : ""}
     >
       <Letter character={word?.[0]} score={score?.[0]} index={0} />
