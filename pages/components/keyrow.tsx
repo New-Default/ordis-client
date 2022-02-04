@@ -8,7 +8,6 @@ interface Props {
 
 const Keyrow: React.FC<Props> = (props) => {
   const backgroundColors = ["#333", "#cc0", "green"];
-  props.keys.map(keyName => console.log(props.usedKeys[keyName]))
   return (
     <div style={{ display: "flex" }}>
       {props.keys.map((keyName) =>
