@@ -9,8 +9,3 @@ export default async function handler(
 ) {
     res.status(200).send(saol5lowercase);
 }
-
-// 75%
-// jobba en dag varannan vecka - nd
-// backlogg av björn-grejor
-
